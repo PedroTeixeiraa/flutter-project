@@ -13,10 +13,16 @@ class AppWidget extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var tapped = true;
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
         child: Container(
@@ -35,65 +41,31 @@ class HomePage extends StatelessWidget {
         ),
         preferredSize: Size.fromHeight(100),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 300,
-            width: 400,
-            color: Colors.yellow,
-            child: Row(
-              children: [
-                Container(
-                  width: 80,
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 50,
-                          height: 50,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            tapped = !tapped;
+            setState(() {});
+          },
+          child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+                color: tapped ? Colors.green : Colors.amber,
+                borderRadius: BorderRadius.circular(25),
+                border: Border.fromBorderSide(BorderSide(
+                  color: Colors.red,
+                  width: 10,
+                )),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    spreadRadius: 1,
+                    blurRadius: 10,
+                  )
+                ]),
           ),
-        ],
+        ),
       ),
       bottomNavigationBar: Container(
         height: 100,
